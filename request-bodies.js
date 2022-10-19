@@ -6,7 +6,7 @@ const listBody = {
 const createBody = []
 
 const getDeactivatedProps = property => {
-    if (property.status === 'deactivated'){
+    if (property.status === "deactivated"){
         return true;
     } else {
         return false;
@@ -18,7 +18,7 @@ const getMatchingUser = user => {
     let accounts = user.associated-accounts;
     if (!hasDeactivatedProperty){
         for (let i = 0; i < accounts.length; i++){
-            let match = deactivatedProps.includes(accounts[i]);
+            let match = deactivatedProps.includes(accounts[i].toString());
             if (match){
                 hasDeactivatedProperty = true;
             } else {

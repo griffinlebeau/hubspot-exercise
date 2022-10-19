@@ -17,7 +17,6 @@
   },
   "homepage": "https://github.com/griffinlebeau/hubspot-exercise#readme",
   "dependencies": {
-    "hubspot": "^2.3.14",
-    "request": "^2.88.2"
+    "hubspot": "^2.3.14"
   }
 }
