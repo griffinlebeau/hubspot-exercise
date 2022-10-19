@@ -1,0 +1,22 @@
+{
+  "name": "hubspot-exercise",
+  "version": "1.0.0",
+  "description": "Write a script to read the provided JSON files in the data directory and then deposit a list of users into our HubSpot account using the API.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/griffinlebeau/hubspot-exercise.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/griffinlebeau/hubspot-exercise/issues"
+  },
+  "homepage": "https://github.com/griffinlebeau/hubspot-exercise#readme",
+  "dependencies": {
+    "request": "^2.88.2"
+  }
+}
