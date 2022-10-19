@@ -1,7 +1,7 @@
 const listId = 202210;
 const apiKey = '';
 const Hubspot = require('hubspot');
-const { listBody, createBody } = require('./create-list');
+const { listBody, createBody } = require('./request-bodies');
 
 const createContacts = body => {
     Hubspot.api_call('https://legacydocs.hubspot.com/docs/methods/contacts/batch_create_or_update', 'POST', JSON.stringify(body))
