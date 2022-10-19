@@ -1,39 +1,39 @@
-const emailList = []
-const listBody = {
+const emailList = [] //array of emails from users with deactivated property accounts  
+const listBody = { //body object used for api call to update contact list 
     "vids": [],
     "emails": emailList
 }
-const createBody = []
+const createBody = [] //body array used for api call to batch create contacts 
 
-const getDeactivatedProps = property => {
-    if (property.status === "deactivated"){
-        return true;
+const getDeactivatedProps = property => { //callback for filter method on array of properties from JSON file
+    if (property.status === "deactivated"){ 
+        return true; //returning true adds property to new deactivated array
     } else {
-        return false;
+        return false; //returning false does not add property to new deactivated array 
     };
 };
 
-const getMatchingUser = user => {
-    let hasDeactivatedProperty = false;
-    let accounts = user.associated-accounts;
-    if (!hasDeactivatedProperty){
-        for (let i = 0; i < accounts.length; i++){
-            let match = deactivatedProps.includes(accounts[i].toString());
-            if (match){
+const getMatchingUser = user => { //callback for filter method on array of users from JSON file
+    let hasDeactivatedProperty = false; //variable that deteremines whether user object is added to new filtered array or not
+    let accounts = user.associated-accounts; //renaming object field for readability in for loop
+    if (!hasDeactivatedProperty){ //will always run because it is false by default, 
+        for (let i = 0; i < accounts.length; i++){//loop through each property account linked to user 
+            let match = deactivatedProps.includes(accounts[i].toString()); //checks if a property account number is present in list of deactivated properties
+            if (match){ //if the user has a deactivated property, set filter return variable to true to add the user instance to array for deposit
                 hasDeactivatedProperty = true;
-            } else {
+            } else { //if the user has no deactivated properties, their filter return variable stays false and they are not added to new array for deposit 
                 return;
             };
         };
     };
-    return hasDeactivatedProperty;
+    return hasDeactivatedProperty; //controls whether 
 };
 
-const populateBodies = deactivatedList => {
-    deactivatedList.forEach(function(user){
-        emailList.push(user.email);
-        let newUser = { 
-            email: user.email,
+const populateBodies = deactivatedList => { //takes in array of users linked to a deactivated property
+    deactivatedList.forEach(function(user){ //transforms each user into form ready for api call request body 
+        emailList.push(user.email); //populates email array for contact list update api call
+        let newUser = { //object matching api syntax 
+            email: user.email, 
             properties: [
                 { property: 'first_name', value: user.first_name },
                 { property: 'last_name', value: user.last_name },
@@ -56,11 +56,11 @@ propRequest.open("GET", "./data/properties.json", false);
 propRequest.send(null)
 var properties = JSON.parse(propRequest.responseText);
 
-const deactivatedList = users.filter(getMatchingUser);
+const deactivatedList = users.filter(getMatchingUser); //array of users who are linked to deactivated properties for deposit 
 
-const deactivatedProps = properties.filter(getDeactivatedProps);
+const deactivatedProps = properties.filter(getDeactivatedProps); //array of deactivated properties 
 
-populateBodies(deactivatedList);
+populateBodies(deactivatedList); //used to set exported bodies for both api calls
 
 module.exports = { listBody, createBody }
 
